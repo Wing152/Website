@@ -1,0 +1,64 @@
+
+> valen@0.1.0 dev
+> next dev -p 3000 -H 0.0.0.0
+
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3000
+  - Network:      http://0.0.0.0:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 5s
+ ✓ Compiled /api/debug-env in 501ms (53 modules)
+ GET /api/debug-env 200 in 709ms
+ ✓ Compiled in 13ms
+ ✓ Compiled in 2.1s (201 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 4.8s (1295 modules)
+ HEAD / 200 in 5299ms
+ ✓ Compiled in 799ms (652 modules)
+ ○ Compiling /api/match ...
+ ✓ Compiled /api/match in 534ms (673 modules)
+Groq Match Response: {"id":"chatcmpl-491a81e9-2f36-4907-9468-78d11421b8e2","object":"chat.completion","created":1779979699,"model":"llama-3.3-70b-versatile","choices":[{"index":0,"message":{"role":"assistant","content":"{\n  \"recommendedMentorIds\": [\"marcus-aurelius\", \"sun-tzu\", \"leonardo-da-vinci\"],\n   \"reasoning\": \"These mentors were chosen because they align with the user's interests in Philosophy and goals of achieving Stoicism, while also addressing their struggles with Anxiety and ambitions for Inner peace. Marcus Aurelius, as a Stoic, can provide guidance on discipline and calmness. Sun Tzu's strategic thinking can help the user navigate through anxiety, and Leonardo da Vinci's artistic and curious nature can foster a sense of inner peace and balance.\"\n}"},"logprobs":null,"finish_reason":"stop"}],"usage":{"queue_time":0.037004664,"prompt_tokens":275,"prompt_time":0.050015079,"completion_tokens":120,"completion_time":0.421702854,"total_tokens":395,"total_time":0.471717933},"usage_breakdown":null,"system_fingerprint":"fp_43d97c5965","x_groq":{"id":"req_01ksqgxgrzedxsayq86v6qg9dq","seed":768760994},"service_tier":"on_demand"}
+ POST /api/match 200 in 1289ms
+ ✓ Compiled /api/chat in 164ms (55 modules)
+Initiating Groq chat completion with model: llama-3.3-70b-versatile
+ POST /api/chat 200 in 387ms
+ ○ Compiling / ...
+ ✓ Compiled / in 829ms (643 modules)
+ GET / 200 in 1319ms
+ ○ Compiling /signup ...
+ ✓ Compiled /signup in 1103ms (1292 modules)
+ GET / 200 in 210ms
+ ○ Compiling /onboarding ...
+ ✓ Compiled /onboarding in 1713ms (1307 modules)
+ GET / 200 in 209ms
+ GET / 200 in 46ms
+ GET / 200 in 41ms
+ GET / 200 in 43ms
+ ○ Compiling /matching ...
+ ✓ Compiled /matching in 760ms (1314 modules)
+ ✓ Compiled /api/match in 441ms (694 modules)
+Groq Match Response: {"id":"chatcmpl-9e02f8aa-b339-4dd9-b543-243c29b93d06","object":"chat.completion","created":1779980346,"model":"llama-3.3-70b-versatile","choices":[{"index":0,"message":{"role":"assistant","content":"{\n  \"recommendedMentorIds\": [\"sun-tzu\", \"marcus-aurelius\", \"steve-jobs\"],\n   \"reasoning\": \"The user aspires to become a legendary leader like Sun Tzu, making Sun Tzu a natural fit. Marcus Aurelius' philosophy and calm demeanor can help the user with decision-making under pressure. Steve Jobs' ambition and vision can provide the user with the necessary drive to achieve their lofty goals.\"\n}"},"logprobs":null,"finish_reason":"stop"}],"usage":{"queue_time":0.15713402,"prompt_tokens":312,"prompt_time":0.087013496,"completion_tokens":94,"completion_time":0.269001517,"total_tokens":406,"total_time":0.356015013},"usage_breakdown":null,"system_fingerprint":"fp_ce7bc1685b","x_groq":{"id":"req_01ksqhh8bpeptv15mg58af8rwf","seed":1950052164},"service_tier":"on_demand"}
+ POST /api/match 200 in 1167ms
+Groq Match Response: {"id":"chatcmpl-6ea6b879-854f-4440-8dc2-2b040749ebde","object":"chat.completion","created":1779980346,"model":"llama-3.3-70b-versatile","choices":[{"index":0,"message":{"role":"assistant","content":"{\n  \"recommendedMentorIds\": [\"marcus-aurelius\", \"sun-tzu\", \"steve-jobs\"],\n   \"reasoning\": \"The user's ambition to become a legendary leader like Sun Tzu and their struggle with making decisions under pressure led to the selection of Sun Tzu for strategic leadership guidance. Marcus Aurelius was chosen for his philosophical and calm approach to help the user develop disciplinary decision-making skills. Steve Jobs' ambition and vision can help the user navigate high-pressure situations, complementing their highly ambitious mindset.\"\n}"},"logprobs":null,"finish_reason":"stop"}],"usage":{"queue_time":0.054283719,"prompt_tokens":312,"prompt_time":0.094633102,"completion_tokens":111,"completion_time":0.372552075,"total_tokens":423,"total_time":0.467185177},"usage_breakdown":null,"system_fingerprint":"fp_d42c28f9ce","x_groq":{"id":"req_01ksqhh8bmfgcv42twbr6ws8h7","seed":654728954},"service_tier":"on_demand"}
+ POST /api/match 200 in 1173ms
+ ✓ Compiled /recommendations in 435ms (1352 modules)
+ GET / 200 in 202ms
+Groq Match Response: {"id":"chatcmpl-674d634e-e528-4464-8e8f-c51b36bb902b","object":"chat.completion","created":1779980401,"model":"llama-3.3-70b-versatile","choices":[{"index":0,"message":{"role":"assistant","content":"{\n  \"recommendedMentorIds\": [\"sun-tzu\", \"marcus-aurelius\", \"steve-jobs\"],\n   \"reasoning\": \"The user's ambition to become a legendary leader like Sun Tzu aligns with sun-tzu's expertise in Strategy and Leadership. marcus-aurelius's Philosophy background and calm demeanor can help the user with decision-making under pressure, while steve-jobs's ambition and vision can guide the user's Highly Ambitious mindset and goal of Strategic Mastery.\"\n}"},"logprobs":null,"finish_reason":"stop"}],"usage":{"queue_time":0.068640262,"prompt_tokens":312,"prompt_time":0.075408548,"completion_tokens":105,"completion_time":0.359022122,"total_tokens":417,"total_time":0.43443067},"usage_breakdown":null,"system_fingerprint":"fp_d42c28f9ce","x_groq":{"id":"req_01ksqhjy6qedhtpfs7aj2eevta","seed":2114505678},"service_tier":"on_demand"}
+ POST /api/match 200 in 638ms
+Groq Match Response: {"id":"chatcmpl-a53b5705-1188-4267-bd1c-d7f96e46edf6","object":"chat.completion","created":1779980401,"model":"llama-3.3-70b-versatile","choices":[{"index":0,"message":{"role":"assistant","content":"{\n  \"recommendedMentorIds\": [\"sun-tzu\", \"marcus-aurelius\", \"steve-jobs\"],\n   \"reasoning\": \"The user aspires to become a legendary leader like Sun Tzu, making sun-tzu a natural fit. Marcus-aurelius is chosen for his Philosophy background, aligning with the user's interest, and his calm and disciplined nature can help with decision-making under pressure. Steve-jobs is selected for his ambition and vision, traits that can guide the user in strategic mastery and leadership, while also learning from his ability to make bold decisions.\"\n}"},"logprobs":null,"finish_reason":"stop"}],"usage":{"queue_time":0.063055817,"prompt_tokens":312,"prompt_time":0.06798016,"completion_tokens":123,"completion_time":0.453168219,"total_tokens":435,"total_time":0.521148379},"usage_breakdown":null,"system_fingerprint":"fp_d42c28f9ce","x_groq":{"id":"req_01ksqhjy6xf5da0gp7qya88zeq","seed":242784830},"service_tier":"on_demand"}
+ POST /api/match 200 in 721ms
+ ○ Compiling /chat ...
+ ✓ Compiled /chat in 3.3s (1728 modules)
+ GET / 200 in 224ms
+Groq Match Response: {"id":"chatcmpl-e6634887-d08e-456c-90e8-f66617446285","object":"chat.completion","created":1779980501,"model":"llama-3.3-70b-versatile","choices":[{"index":0,"message":{"role":"assistant","content":"{\n  \"recommendedMentorIds\": [\"sun-tzu\", \"marcus-aurelius\", \"steve-jobs\"],\n   \"reasoning\": \"These mentors were chosen because they cater to the user's ambition of becoming a legendary leader like Sun Tzu, while also addressing their struggle with decision-making under pressure. Sun Tzu provides strategic leadership, Marcus Aurelius offers philosophical calmness and discipline to aid in decision-making, and Steve Jobs embodies the ambition and vision required to achieve legendary status.\"\n}"},"logprobs":null,"finish_reason":"stop"}],"usage":{"queue_time":0.063224055,"prompt_tokens":312,"prompt_time":0.025671444,"completion_tokens":103,"completion_time":0.326517322,"total_tokens":415,"total_time":0.352188766},"usage_breakdown":null,"system_fingerprint":"fp_43d97c5965","x_groq":{"id":"req_01ksqhp00neqnscx3ks70znn9x","seed":1254144731},"service_tier":"on_demand"}
+ POST /api/match 200 in 605ms
+Groq Match Response: {"id":"chatcmpl-2f494a7e-5454-4836-8c93-9021232e8a48","object":"chat.completion","created":1779980501,"model":"llama-3.3-70b-versatile","choices":[{"index":0,"message":{"role":"assistant","content":"{\n  \"recommendedMentorIds\": [\"sun-tzu\", \"marcus-aurelius\", \"steve-jobs\"],\n   \"reasoning\": \"The user aspires to become a legendary leader like Sun Tzu, making sun-tzu a natural fit. marcus-aurelius is recommended for his philosophical and calm approach, which can aid in making decisions under pressure. steve-jobs is chosen for his ambitious and visionary nature, which aligns with the user's highly ambitious mindset and desire for strategic mastery.\"\n}"},"logprobs":null,"finish_reason":"stop"}],"usage":{"queue_time":0.145181294,"prompt_tokens":312,"prompt_time":0.016509022,"completion_tokens":108,"completion_time":0.316145348,"total_tokens":420,"total_time":0.33265437},"usage_breakdown":null,"system_fingerprint":"fp_f8b414701e","x_groq":{"id":"req_01ksqhnzz7fvss34v0pghnts6x","seed":13777194},"service_tier":"on_demand"}
+ POST /api/match 200 in 612ms
+ ○ Compiling /api/chat ...
+ ✓ Compiled /api/chat in 603ms (895 modules)
+Initiating Groq chat completion with model: llama-3.3-70b-versatile
+ POST /api/chat 200 in 1288ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 1063ms (1746 modules)
