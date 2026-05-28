@@ -47,9 +47,11 @@ export default function RecommendationsPage() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl font-bold mb-4">Your Personalized Council</h1>
-          <p className="text-text-secondary max-w-2xl mx-auto">
-            {recommendations.reasoning}
-          </p>
+          <div className="bg-primary/5 border border-primary/10 rounded-2xl p-8 max-w-3xl mx-auto">
+             <p className="text-lg text-primary font-medium italic">
+               &quot;{recommendations.reasoning}&quot;
+             </p>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

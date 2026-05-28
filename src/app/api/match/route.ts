@@ -32,9 +32,23 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const prompt = `Analyze these user onboarding responses and recommend exactly 3 mentors from this list: [marcus-aurelius, leonardo-da-vinci, marie-curie, sun-tzu, steve-jobs].
-    User Responses: ${JSON.stringify(responses)}
-    Return ONLY a JSON object with 'recommendedMentorIds' (array of IDs) and 'reasoning' (string).`;
+    const prompt = `You are an expert personality analyst and mentor matcher.
+    Analyze these user onboarding responses: ${JSON.stringify(responses)}.
+
+    Recommend exactly 3 mentors from this list:
+    - marcus-aurelius (Stoic, Philosophy, Calm, Discipline)
+    - leonardo-da-vinci (Art, Science, Curiosity, Connections)
+    - marie-curie (Science, Dedication, Analysis, Persistence)
+    - sun-tzu (Strategy, Leadership, Efficiency, Psychology)
+    - steve-jobs (Innovation, Design, Ambition, Vision)
+
+    Select based on their specific struggles ("${responses.struggles}") and ambitions ("${responses.ambitions}").
+
+    Return ONLY a JSON object with this exact structure:
+    {
+      "recommendedMentorIds": ["id1", "id2", "id3"],
+      "reasoning": "A concise, personalized explanation of why these 3 were chosen based on the user's specific text inputs."
+    }`;
 
     const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
@@ -43,13 +57,17 @@ export async function POST(req: NextRequest) {
         'Authorization': `Bearer ${groqApiKey}`,
       },
       body: JSON.stringify({
-        model: 'llama3-8b-8192',
+        model: 'llama-3.3-70b-versatile',
         messages: [{ role: 'user', content: prompt }],
         response_format: { type: "json_object" }
       }),
     });
 
     const data = await response.json();
+    console.log('Groq Match Response:', JSON.stringify(data));
+    if (!data.choices || !data.choices[0]) {
+       throw new Error('Invalid response from Groq');
+    }
     const result = JSON.parse(data.choices[0].message.content);
     return NextResponse.json(result);
   } catch (error) {

@@ -23,29 +23,33 @@ export function useChatStream() {
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let done = false;
+      let leftover = '';
 
       while (!done) {
         const { value, done: doneReading } = await reader.read();
         done = doneReading;
         const chunkValue = decoder.decode(value);
+        const combined = leftover + chunkValue;
 
-        // Handle SSE data format if it's coming from real Groq API
-        if (chunkValue.includes('data: ')) {
-          const lines = chunkValue.split('\n');
+        if (combined.includes('data: ')) {
+          const lines = combined.split('\n');
+          // The last line might be incomplete
+          leftover = lines.pop() || '';
+
           for (const line of lines) {
-            if (line.startsWith('data: ') && line !== 'data: [DONE]') {
+            const trimmed = line.trim();
+            if (trimmed.startsWith('data: ') && trimmed !== 'data: [DONE]') {
               try {
-                const data = JSON.parse(line.slice(6));
+                const data = JSON.parse(trimmed.slice(6));
                 const content = data.choices[0]?.delta?.content || '';
                 if (content) onChunk(content);
               } catch (e) {
-                console.error('Error parsing SSE', e);
+                // Ignore parsing errors for incomplete JSON
               }
             }
           }
-        } else {
-          // Plain text chunk for mock
-          onChunk(chunkValue);
+        } else if (doneReading && combined) {
+          onChunk(combined);
         }
       }
     } catch (error) {
