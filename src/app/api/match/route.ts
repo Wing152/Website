@@ -8,10 +8,27 @@ export async function POST(req: NextRequest) {
     const groqApiKey = process.env.GROQ_API_KEY;
 
     if (!groqApiKey) {
-      // Fallback logic if no API key
+      // Improved fallback logic based on onboarding responses
+      const { goals = [], interests = [] } = responses;
+      const mentorIds = new Set<string>();
+
+      if (interests.includes('Philosophy') || interests.includes('Psychology')) mentorIds.add('marcus-aurelius');
+      if (interests.includes('Art & Culture') || interests.includes('History')) mentorIds.add('leonardo-da-vinci');
+      if (interests.includes('Technology') || goals.includes('Scientific Understanding')) mentorIds.add('marie-curie');
+      if (goals.includes('Strategic Mastery') || goals.includes('Career Growth')) mentorIds.add('sun-tzu');
+      if (goals.includes('Wealth Creation') || interests.includes('Economics')) mentorIds.add('steve-jobs');
+
+      // Ensure we have 3
+      const allMentors = ['marcus-aurelius', 'leonardo-da-vinci', 'marie-curie', 'sun-tzu', 'steve-jobs'];
+      for (const id of allMentors) {
+        if (mentorIds.size < 3) mentorIds.add(id);
+      }
+
+      const recommendedMentorIds = Array.from(mentorIds).slice(0, 3);
+
       return NextResponse.json({
-        recommendedMentorIds: ['marcus-aurelius', 'leonardo-da-vinci', 'marie-curie'],
-        reasoning: "Matched based on your pursuit of wisdom and multi-disciplinary interests."
+        recommendedMentorIds,
+        reasoning: "Our analysis suggests these mentors align perfectly with your background in " + interests.join(', ') + " and your goals of " + goals.join(', ') + "."
       });
     }
 

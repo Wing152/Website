@@ -13,7 +13,12 @@ export async function POST(req: NextRequest) {
       const encoder = new TextEncoder();
       const stream = new ReadableStream({
         async start(controller) {
-          const text = "I am currently operating in offline mode as no API key was provided. However, I can still offer you wisdom. Remember: 'The only true wisdom is in knowing you know nothing.' How can I assist you today on your journey?";
+          // Extract mentor name from system prompt (rough heuristic for mock)
+          const nameMatch = systemPrompt.match(/You are ([^.]+)\./);
+          const name = nameMatch ? nameMatch[1] : "Your Mentor";
+
+          const text = `I am ${name}. While my full cognitive link is currently in a simplified state, I am here to guide you with the wisdom I possess. Reflect on your path and tell me, what is the most important question on your mind right now?`;
+
           const words = text.split(' ');
           for (const word of words) {
             controller.enqueue(encoder.encode(word + ' '));

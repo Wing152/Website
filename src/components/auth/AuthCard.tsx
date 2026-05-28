@@ -16,16 +16,32 @@ interface AuthCardProps {
 export default function AuthCard({ type }: AuthCardProps) {
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
+  const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const login = useAuthStore((state) => state.login)
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+    setError(null)
 
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000))
+
+    // Validation
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters")
+      setIsLoading(false)
+      return
+    }
+
+    if (type === 'login' && email === "error@example.com") {
+      setError("Invalid email or password")
+      setIsLoading(false)
+      return
+    }
 
     login(email, type === 'signup' ? name : email.split('@')[0])
     setIsLoading(false)
@@ -62,6 +78,11 @@ export default function AuthCard({ type }: AuthCardProps) {
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
+            {error && (
+              <div className="p-3 text-xs font-medium text-red-500 bg-red-50 rounded-lg border border-red-100">
+                {error}
+              </div>
+            )}
             {type === 'signup' && (
               <div className="space-y-2">
                 <label className="text-sm font-medium">Full Name</label>
@@ -85,7 +106,13 @@ export default function AuthCard({ type }: AuthCardProps) {
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">Password</label>
-              <Input type="password" placeholder="••••••••" required />
+              <Input
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
